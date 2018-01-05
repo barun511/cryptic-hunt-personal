@@ -19,6 +19,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+# TODO having level_title, but only description, seems a bit funny. I think we should make level_title just title, and level_number just number, but we need to change level_number to number in views as well.
 class Level(models.Model):
 	level_title = models.CharField(max_length=30)
 	description = models.TextField()
@@ -36,4 +37,4 @@ class Submission(models.Model):
 	submitted_answer = models.CharField(max_length=20) # matches the answer field
 	accepted = models.BooleanField()
 	def __str__(self):
-		return str(user.username) + " submitted the answer " + str(submitted_answer) + " for Level " + str(level.level_number) + " at time " + str(time_of_submission)
+		return str(self.user.username) + " submitted the answer " + str(self.submitted_answer) + " for Level " + str(self.level.level_number) + " at time " + str(self.time_of_submission)

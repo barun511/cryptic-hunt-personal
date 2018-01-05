@@ -7,5 +7,5 @@ class UserForm(forms.ModelForm):
         model = User
         fields= ["username", "password"]
 
-class SubmissionForm(forms.ModelForm):
-	answer = forms.CharField(label="Submit Answer")
+class SubmissionForm(forms.Form):
+	answer = forms.CharField()
