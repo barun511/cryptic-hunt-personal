@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block 'content' %}
-This is level {{ level.level_number}}
+
+<div class="level">
+<b>{{level.level_title}}</b>
 <p>
-{{level.description}}
+{{level.description|safe}}
 </p>
 <form method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<button type="submit">Submit Answer</button>
 	</form>
+	</div>
 {% endblock %}

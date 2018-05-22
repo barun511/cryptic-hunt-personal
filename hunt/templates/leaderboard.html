@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
 {% block 'content' %}
-Hi
+<div class="level">
+	<table>
+	<tr>
+		<th> Rank </th>
+		<th> Username </th>
+		<th> Level </th>
+		<th> Time To Level </th>
+	</tr>
+	{% for user in ranked_list %}
+	<tr>
+		<th> {{ forloop.counter }} </th>
+		<th> {{ user.user.username }} </th>
+		<th> {{ user.level }} </th>
+		<th> {{user.time_of_level}}</th>
+	</tr> 
+	{% endfor %}
+</div>
 {% endblock %}

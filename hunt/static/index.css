@@ -32,4 +32,18 @@ body
 {
 	width:85%;
 	margin:auto;
+	padding-top:7.5%;
+	align-content: center;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+.level
+{
+	border: 1px solid black;
+	width:85%;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:20px;
+	text-align:center;
 }
