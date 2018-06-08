@@ -1,1 +1,1 @@
-web: gunicorn cryptic.wsgi --log-file -
+web: gunicorn cryptic.wsgi
