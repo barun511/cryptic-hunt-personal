@@ -47,3 +47,13 @@ body
 	padding-top:20px;
 	text-align:center;
 }
+.link a
+{
+	text-decoration: none;
+	color:#872121;
+	padding-right: 10px;
+}
+.link a:hover
+{
+	color:blue;
+}

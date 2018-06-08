@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% block 'content' %}
-
+<div class="links">
+<span class="link">
+	<a href="/level/0">0</a>
+</span>
+{% with ''|center:userlevel as range %}
+{% for i in range %}
+<span class="link">
+	<a href="/level/{{forloop.counter}}">{{forloop.counter}}</a>
+</span>
+{% endfor %}
+{% endwith %}
+</div>
 <div class="level">
 <b>{{level.level_title}}</b>
 <p>

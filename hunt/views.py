@@ -4,11 +4,7 @@ from django.contrib.auth import authenticate
 from .forms import UserForm, SubmissionForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import Level, Submission, Profile
-# TODO clean up all redundant things.
-
-#CONSTANT DECLARATION OF HIGHEST LEVEL NUMBER HERE
-max_level_number =  7
-
+# TODO clean up all redundant things.   
 # Create your views here.
 
 def index(request):
@@ -43,7 +39,8 @@ def play(request):
 
 def level(request, level_number):
     print(level_number)
-    if int(level_number) > max_level_number:
+    print(len(Level.objects.all()))
+    if int(level_number) >= len(Level.objects.all()):
         return render(request, 'finished.html', {})
     if request.user.is_authenticated() and request.user.profile.level >= int(level_number): # if the user level isn't high enough to access this level
         current_level = get_object_or_404(Level, level_number=level_number) # then they will simply be redirected to play which redirects them to the latest unsolved level
@@ -51,7 +48,8 @@ def level(request, level_number):
         acccessible_levels = Level.objects.filter(level_number=request.user.profile.level)
         if request.method == "GET":
             form = SubmissionForm()
-            return render(request, 'level.html', {'level' : current_level, 'form' : form})
+
+            return render(request, 'level.html', {'userlevel' : request.user.profile.level, 'level' : current_level, 'form' : form})
         else:
             form = SubmissionForm(request.POST)
             if form.is_valid():
@@ -87,7 +85,7 @@ def level(request, level_number):
                     if (request.user.profile.level == current_level.level_number):
                         request.user.profile.level = current_level.level_number + 1
                         request.user.save()
-                    return redirect('level', request.user.profile.level)
+                    return redirect('level', current_level.level_number + 1)
                     # requests.user.profle.level+=1 <-- This is INCORRECT, Preetha/Paul. Can you figure out what the potential issue is?
                 else:
                     print("XD")
