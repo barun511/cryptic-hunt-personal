@@ -1,0 +1,361 @@
+CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE);
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"));
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL);
+INSERT INTO "auth_permission" VALUES(1,1,'add_logentry','Can add log entry');
+INSERT INTO "auth_permission" VALUES(2,1,'change_logentry','Can change log entry');
+INSERT INTO "auth_permission" VALUES(3,1,'delete_logentry','Can delete log entry');
+INSERT INTO "auth_permission" VALUES(4,2,'add_user','Can add user');
+INSERT INTO "auth_permission" VALUES(5,2,'change_user','Can change user');
+INSERT INTO "auth_permission" VALUES(6,2,'delete_user','Can delete user');
+INSERT INTO "auth_permission" VALUES(7,3,'add_permission','Can add permission');
+INSERT INTO "auth_permission" VALUES(8,3,'change_permission','Can change permission');
+INSERT INTO "auth_permission" VALUES(9,3,'delete_permission','Can delete permission');
+INSERT INTO "auth_permission" VALUES(10,4,'add_group','Can add group');
+INSERT INTO "auth_permission" VALUES(11,4,'change_group','Can change group');
+INSERT INTO "auth_permission" VALUES(12,4,'delete_group','Can delete group');
+INSERT INTO "auth_permission" VALUES(13,5,'add_contenttype','Can add content type');
+INSERT INTO "auth_permission" VALUES(14,5,'change_contenttype','Can change content type');
+INSERT INTO "auth_permission" VALUES(15,5,'delete_contenttype','Can delete content type');
+INSERT INTO "auth_permission" VALUES(16,6,'add_session','Can add session');
+INSERT INTO "auth_permission" VALUES(17,6,'change_session','Can change session');
+INSERT INTO "auth_permission" VALUES(18,6,'delete_session','Can delete session');
+INSERT INTO "auth_permission" VALUES(19,7,'add_profile','Can add profile');
+INSERT INTO "auth_permission" VALUES(20,7,'change_profile','Can change profile');
+INSERT INTO "auth_permission" VALUES(21,7,'delete_profile','Can delete profile');
+INSERT INTO "auth_permission" VALUES(22,8,'add_level','Can add level');
+INSERT INTO "auth_permission" VALUES(23,8,'change_level','Can change level');
+INSERT INTO "auth_permission" VALUES(24,8,'delete_level','Can delete level');
+INSERT INTO "auth_permission" VALUES(25,9,'add_submission','Can add submission');
+INSERT INTO "auth_permission" VALUES(26,9,'change_submission','Can change submission');
+INSERT INTO "auth_permission" VALUES(27,9,'delete_submission','Can delete submission');
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(150) NOT NULL UNIQUE);
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "auth_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "group_id" integer NOT NULL REFERENCES "auth_group" ("id"));
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "auth_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"));
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL, "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id"), "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "action_time" datetime NOT NULL);
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL);
+INSERT INTO "django_content_type" VALUES(1,'admin','logentry');
+INSERT INTO "django_content_type" VALUES(2,'auth','user');
+INSERT INTO "django_content_type" VALUES(3,'auth','permission');
+INSERT INTO "django_content_type" VALUES(4,'auth','group');
+INSERT INTO "django_content_type" VALUES(5,'contenttypes','contenttype');
+INSERT INTO "django_content_type" VALUES(6,'sessions','session');
+INSERT INTO "django_content_type" VALUES(7,'hunt','profile');
+INSERT INTO "django_content_type" VALUES(8,'hunt','level');
+INSERT INTO "django_content_type" VALUES(9,'hunt','submission');
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL);
+INSERT INTO "django_migrations" VALUES(1,'contenttypes','0001_initial','2017-10-26 05:24:24.888059');
+INSERT INTO "django_migrations" VALUES(2,'auth','0001_initial','2017-10-26 05:24:24.942587');
+INSERT INTO "django_migrations" VALUES(3,'admin','0001_initial','2017-10-26 05:24:24.986315');
+INSERT INTO "django_migrations" VALUES(4,'admin','0002_logentry_remove_auto_add','2017-10-26 05:24:25.028362');
+INSERT INTO "django_migrations" VALUES(5,'contenttypes','0002_remove_content_type_name','2017-10-26 05:24:25.112981');
+INSERT INTO "django_migrations" VALUES(6,'auth','0002_alter_permission_name_max_length','2017-10-26 05:24:25.138752');
+INSERT INTO "django_migrations" VALUES(7,'auth','0003_alter_user_email_max_length','2017-10-26 05:24:25.188285');
+INSERT INTO "django_migrations" VALUES(8,'auth','0004_alter_user_username_opts','2017-10-26 05:24:25.221459');
+INSERT INTO "django_migrations" VALUES(9,'auth','0005_alter_user_last_login_null','2017-10-26 05:24:25.268916');
+INSERT INTO "django_migrations" VALUES(10,'auth','0006_require_contenttypes_0002','2017-10-26 05:24:25.282915');
+INSERT INTO "django_migrations" VALUES(11,'auth','0007_alter_validators_add_error_messages','2017-10-26 05:24:25.332857');
+INSERT INTO "django_migrations" VALUES(12,'auth','0008_alter_user_username_max_length','2017-10-26 05:24:25.387834');
+INSERT INTO "django_migrations" VALUES(13,'sessions','0001_initial','2017-10-26 05:24:25.417096');
+INSERT INTO "django_migrations" VALUES(14,'hunt','0001_initial','2017-10-26 05:24:38.732612');
+INSERT INTO "django_migrations" VALUES(15,'hunt','0002_profile_time_of_level','2017-10-27 05:09:04.941309');
+INSERT INTO "django_migrations" VALUES(16,'hunt','0003_level','2018-01-05 13:41:58.429678');
+INSERT INTO "django_migrations" VALUES(17,'hunt','0004_auto_20180105_1914','2018-01-05 13:44:26.548456');
+INSERT INTO "django_migrations" VALUES(18,'hunt','0005_level_level_title','2018-01-05 13:46:24.516146');
+INSERT INTO "django_migrations" VALUES(19,'hunt','0006_auto_20180105_1920','2018-01-05 13:50:26.926778');
+INSERT INTO "django_migrations" VALUES(20,'hunt','0007_submission','2018-01-05 16:00:02.655471');
+INSERT INTO "django_migrations" VALUES(21,'hunt','0008_auto_20180105_2131','2018-01-05 16:02:03.532122');
+INSERT INTO "django_migrations" VALUES(22,'hunt','0009_submission','2018-01-05 16:02:36.190296');
+INSERT INTO "django_migrations" VALUES(23,'hunt','0010_submission_accepted','2018-01-05 16:05:18.626346');
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL);
+INSERT INTO "django_session" VALUES('4ce76rtf9o7hly5cf59q08pllxsj1ho9','NzM0MzJhNjZhYjAyMzVkNmEyOTdjOWFjNDViMzQzZGRkM2E0ZTkzMDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiJlNzRkNWYxZjhkZWQ3MjQzNTM0MDViMWI2MmQ4ZmU1OWM1MWEyNDE2In0=','2017-11-09 05:24:53.384644');
+INSERT INTO "django_session" VALUES('ikzmj0x2sbelscvs59p7y7j41ela2l8z','YmRlZDBlNjE4MzY5NmFjNzQ5OGZmNTZjZDVkZDc1M2E1ZTEyOTE0NDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIwMzE1ZDJkN2Y3MzUxZjFkMWNkODViY2JkOGU1ZTNiOGU4NmVkMmIxIn0=','2018-01-19 09:39:40.387936');
+INSERT INTO "django_session" VALUES('4vrzca9cp1mlmrr6fwdl068utucl36h2','NGIyZjVjZjU3NzA3ZGIyMzY5ZGQzNDgxY2Y5NjJkOTg4OTIwYWVjMDp7fQ==','2018-01-19 09:52:20.536650');
+INSERT INTO "django_session" VALUES('zd2c4t8bjuc9jpddepemgq7xlsbwv4ps','NGIyZjVjZjU3NzA3ZGIyMzY5ZGQzNDgxY2Y5NjJkOTg4OTIwYWVjMDp7fQ==','2018-01-19 09:52:40.850239');
+INSERT INTO "django_session" VALUES('qt6vu5j8syrd1coqvlago9xgp6arannw','N2M0MjUzMDdhYWZjZDc2MTVkOTJhMzZlMGIyMTgxZmZmZWFiZmViYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlNzRkNWYxZjhkZWQ3MjQzNTM0MDViMWI2MmQ4ZmU1OWM1MWEyNDE2In0=','2018-01-20 06:45:37.725287');
+INSERT INTO "django_session" VALUES('co6av1uju07a771zh8ftagzt61ehi0op','MGNlOWIzYzZjNTcxNWEyMWI4MjNlNzkwODEyOGQ1NjBkNGMzZDljZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYzlmNGYyMWU2NjZlNjBlNWU0MzQzZGY4Y2FlYjgzNGQxNDJiNmNkIn0=','2018-02-11 07:28:26.194018');
+INSERT INTO "django_session" VALUES('50k4zupgjlat677isxgwrstk69wp34vi','MTVmMDMzMTI1N2NiZGIxYjlhM2RjODAzNWI3YTU5MDlkMzY0NjVmODp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1NDZjZGM1ODQzNjllMzRhNGZiNmU3MjcwZDNlN2Q5NDJjNDA5OGJlIn0=','2018-02-11 07:37:50.504018');
+INSERT INTO "django_session" VALUES('izc6a4cse6h1xf69mw21d42szot5dbwg','NDhjNjA1ODc4Y2E3N2IxOTQ1MmJjMTc2MTEzOWVjNDE4NTM4OGYzZjp7Il9hdXRoX3VzZXJfaWQiOiI0IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYjUwZWE1ZmQ0NjgzM2RjNjJlZTlkNGM4YTMxYzc1ODNmODk2YmZmIn0=','2018-02-11 07:39:28.419797');
+INSERT INTO "django_session" VALUES('w8x7wq718nvt5kdsqy6u70r8ftgn6zbc','MGNlOWIzYzZjNTcxNWEyMWI4MjNlNzkwODEyOGQ1NjBkNGMzZDljZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYzlmNGYyMWU2NjZlNjBlNWU0MzQzZGY4Y2FlYjgzNGQxNDJiNmNkIn0=','2018-04-15 07:11:47.208291');
+INSERT INTO "django_session" VALUES('k7kk06gw5yzshoc9um1z71f8ljr66g5m','MTVmMDMzMTI1N2NiZGIxYjlhM2RjODAzNWI3YTU5MDlkMzY0NjVmODp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1NDZjZGM1ODQzNjllMzRhNGZiNmU3MjcwZDNlN2Q5NDJjNDA5OGJlIn0=','2018-04-15 07:28:06.782143');
+INSERT INTO "django_session" VALUES('8k05x8o2ivn9yisuytlr37j1896i4qfy','MTVmMDMzMTI1N2NiZGIxYjlhM2RjODAzNWI3YTU5MDlkMzY0NjVmODp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1NDZjZGM1ODQzNjllMzRhNGZiNmU3MjcwZDNlN2Q5NDJjNDA5OGJlIn0=','2018-06-01 10:19:52.879632');
+INSERT INTO "django_session" VALUES('56kkvaa0zap4h4bf17v59o08uk3bqz8o','MGNlOWIzYzZjNTcxNWEyMWI4MjNlNzkwODEyOGQ1NjBkNGMzZDljZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYzlmNGYyMWU2NjZlNjBlNWU0MzQzZGY4Y2FlYjgzNGQxNDJiNmNkIn0=','2018-06-03 08:38:56.784093');
+INSERT INTO "django_session" VALUES('8iqc23swirifo915of4x6lg3v1yxb19y','MGNlOWIzYzZjNTcxNWEyMWI4MjNlNzkwODEyOGQ1NjBkNGMzZDljZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYzlmNGYyMWU2NjZlNjBlNWU0MzQzZGY4Y2FlYjgzNGQxNDJiNmNkIn0=','2018-06-22 09:00:58.100138');
+INSERT INTO "django_session" VALUES('hhle71x6lbhuu736tdpg85i1sdyqp64s','MGNlOWIzYzZjNTcxNWEyMWI4MjNlNzkwODEyOGQ1NjBkNGMzZDljZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYzlmNGYyMWU2NjZlNjBlNWU0MzQzZGY4Y2FlYjgzNGQxNDJiNmNkIn0=','2018-06-22 13:15:36.978721');
+INSERT INTO "django_session" VALUES('wa72wfr5qrqfkobu410g8co4dioyllbc','MGNlOWIzYzZjNTcxNWEyMWI4MjNlNzkwODEyOGQ1NjBkNGMzZDljZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYzlmNGYyMWU2NjZlNjBlNWU0MzQzZGY4Y2FlYjgzNGQxNDJiNmNkIn0=','2018-06-22 14:26:20.120850');
+INSERT INTO "django_session" VALUES('3wquwniyd6xghzbn22vsiikwpxlwa7jc','MGNlOWIzYzZjNTcxNWEyMWI4MjNlNzkwODEyOGQ1NjBkNGMzZDljZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYzlmNGYyMWU2NjZlNjBlNWU0MzQzZGY4Y2FlYjgzNGQxNDJiNmNkIn0=','2018-06-23 10:24:06.815369');
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "hunt_level" ("description" text NOT NULL, "level_number" integer NOT NULL PRIMARY KEY, "level_title" varchar(30) NOT NULL, "answer1" varchar(20) NOT NULL, "answer2" varchar(20) NOT NULL, "answer3" varchar(20) NOT NULL);
+INSERT INTO "hunt_level" VALUES('Just trust me, okay?
+
+
+Bonus: MIQKlHSD89E (not a clue)',0,'This is a cryptic hunt level','okay','okay','ok');
+INSERT INTO "hunt_level" VALUES('<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Map_of_MOBA.svg">
+
+<br>
+Bonus: Gm511P-_fjo (Non clue)',1,'Simple, easy, popular, MOBA?','leagueoflegends','LeagueOfLegends','lol');
+INSERT INTO "hunt_level" VALUES('George Ezra - ??? <br>
+<strike>Right</strike> Left
+
+
+Bonus: jtpK9uxTZhE (non clue)',2,'25mrapidfire','karolytakacs','karoly','karolytakacs');
+INSERT INTO "hunt_level" VALUES('On display at the Gemäldegalerie <br>
+Dnxibldie : 02557261<br>
+
+
+Netflix?
+
+Bonus: vM08HV6F8vA (Non clue)',3,'season finale','amorvincitomnia','amor vincit omnia','Amor Vincit Omnia');
+INSERT INTO "hunt_level" VALUES('Pan Am Tantalum
+
+Bonus: 6Cs3Pvmmv0E  (non clue)',4,'Do you remember her?','neerjabhanot','neerja bhanot','Neerja Bhanot');
+INSERT INTO "hunt_level" VALUES('Fired for whistleblowing lack of diversity (or was she? it''s a mystery)<br>
+We''ll remember you, <b> chief </b>.
+
+Bonus: s6WOEcSoQ0Q (non clue)',5,'cryptic hunts are exhibitions','helenmolesworth','helenmolesworth','helenmolesworth');
+INSERT INTO "hunt_level" VALUES('<img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Sartre_1967_crop.jpg" height="200px" width="200px"> <br>
+
+ <br>Votre âme est un paysage choisi <br> Que vont charmant masques et bergamasques <br> Jouant du luth et dansant et quasi <br>Tristes sous leurs déguisements fantasques. <br>
+
+<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Loco-Fener_%2810%29.jpg" width="200px" height="200px"> <br>
+
+
+Bonus: r0U0AlLVqpk (Not a clue)',6,'1 | 2 | 2 | Damn','jeanclaudevandamme','jeanclaudevandamme','jeanclaudevandamme');
+INSERT INTO "hunt_level" VALUES('<img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" width="200px" height="200px"> 
+<img src="http://diylogodesigns.com/blog/wp-content/uploads/2016/04/Microsoft-Logo-icon-png-Transparent-Background.png" width="200px" height="200px">
+<br>
+Bonus: 4rcb8XE6ZXA (non clue)',7,'"I promise to save"','atom','atom','atom');
+INSERT INTO "hunt_level" VALUES('1<br>8<br>17<br>16<br>38<br>47<br>53<br>73<br>60<br>41<br>58<br>41<br>54<br>45',8,'Goats eat grass','lionelmessi','lionelmessi','messi');
+INSERT INTO "hunt_level" VALUES('0 - 1<br>
+1 - 1<br>
+2 - 6<br>
+3 - 5<br>
+4 - 2<br>
+5 - 7<br>
+6 - 8<br>
+7 - 3<br>
+8 - 2<br>
+
+Bonus: Youtube links (Clue to all other not clues)',9,'Megaconnect','iloveyoutoo','iloveyou','<3');
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "hunt_profile" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "level" integer NOT NULL, "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id"), "time_of_level" datetime NOT NULL);
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
+CREATE TABLE "hunt_submission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "time_of_submission" datetime NOT NULL, "submitted_answer" varchar(20) NOT NULL, "level_id" integer NOT NULL REFERENCES "hunt_level" ("level_number"), "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "accepted" bool NOT NULL);
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id");
+CREATE INDEX IF NOT EXISTS "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_group_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX IF NOT EXISTS "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_model_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX IF NOT EXISTS "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id");
+CREATE INDEX IF NOT EXISTS "django_session_expire_date_a5c62663" ON "django_session" ("expire_date");
+CREATE INDEX IF NOT EXISTS "hunt_submission_level_id_0a3863f5" ON "hunt_submission" ("level_id");
+CREATE INDEX IF NOT EXISTS "hunt_submission_user_id_97616929" ON "hunt_submission" ("user_id");
