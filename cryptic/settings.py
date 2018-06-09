@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os,dj_database_url
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -87,9 +87,6 @@ DATABASES = {
     }
 }
 '''
-DATABASES = {
-    'default' : dj_database_url.config()
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -137,3 +134,5 @@ LOGIN_REDIRECT_URL = '/play/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 MEDIA_URL= '/media/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600,ssl_require=True)
