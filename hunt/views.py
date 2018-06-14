@@ -58,7 +58,6 @@ def level(request, level_number):
                 submission.level = current_level
                 submission.user = request.user
                 submission.submitted_answer = answer
-                submission.save()
                 print(submission)
                 # todo make user.profile.level a level object instead of a level number really important and tricky to do do not forget or skip it
                 # is this even possible with current architecture?
@@ -86,14 +85,15 @@ def level(request, level_number):
                     if (request.user.profile.level == current_level.level_number):
                         request.user.profile.level = current_level.level_number + 1
                         request.user.save()
+                    submission.save()
                     return redirect('level', current_level.level_number + 1)
                     # requests.user.profle.level+=1 <-- This is INCORRECT, Preetha/Paul. Can you figure out what the potential issue is?
                 else:
                     print("XD")
                     submission.accepted = False
+                    submission.save()
                     return redirect('level', request.user.profile.level)
                     # display "Wrong Answer, try again", or something of the sort to give feedback.
-                submission.save()
                 
     else:
         print("XASD")
