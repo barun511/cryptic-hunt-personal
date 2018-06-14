@@ -58,6 +58,7 @@ def level(request, level_number):
                 submission.level = current_level
                 submission.user = request.user
                 submission.submitted_answer = answer
+                submission.save()
                 print(submission)
                 # todo make user.profile.level a level object instead of a level number really important and tricky to do do not forget or skip it
                 # is this even possible with current architecture?
