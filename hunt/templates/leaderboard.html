@@ -10,10 +10,10 @@
 	</tr>
 	{% for user in ranked_list %}
 	<tr>
-		<th> {{ forloop.counter }} </th>
-		<th> {{ user.user.username }} </th>
-		<th> {{ user.level }} </th>
-		<th> {{user.time_of_level}}</th>
+		<td> {{ forloop.counter }} </td>
+		<td> {{ user.user.username }} </td>
+		<td> {{ user.level }} </td>
+		<td> {{user.time_of_level}}</td>
 	</tr> 
 	{% endfor %}
 </div>

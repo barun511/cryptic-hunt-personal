@@ -11,6 +11,9 @@ def index(request):
     form = UserForm()# redundant
     return render(request, 'index.html', {'form': form})
 
+def rules(request):
+    return render(request, 'rules.html', {})
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -32,7 +35,7 @@ def leaderboard(request):
     return render(request, 'leaderboard.html', {'ranked_list' : ranked_list})
 
 def play(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return level(request, request.user.profile.level)
     else:
         return redirect('index')
@@ -42,7 +45,7 @@ def level(request, level_number):
     print(len(Level.objects.all()))
     if int(level_number) >= len(Level.objects.all()):
         return render(request, 'finished.html', {})
-    if request.user.is_authenticated() and request.user.profile.level >= int(level_number): # if the user level isn't high enough to access this level
+    if request.user.is_authenticated and request.user.profile.level >= int(level_number): # if the user level isn't high enough to access this level
         current_level = get_object_or_404(Level, level_number=level_number) # then they will simply be redirected to play which redirects them to the latest unsolved level
         possible_answers = [current_level.answer1, current_level.answer2, current_level.answer3]
         acccessible_levels = Level.objects.filter(level_number=request.user.profile.level)

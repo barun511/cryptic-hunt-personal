@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block 'content' %}
 	<h3> Signup for the Cryptic Hunt! </h3>
-	Signups have been disabled - only selected teams will be assigned accounts from now on. 
+    <form method="post">
+    <div class="signup">
+    <table>
+    {% csrf_token %}
+    {{form.as_table}}
+    </table>
+    </div>
+    <button type="submit"> Signup </button>
+    </form>
 {% endblock %}
