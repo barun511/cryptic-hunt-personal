@@ -24,7 +24,7 @@ PROJECT_ROOT = BASE_DIR
 SECRET_KEY = '&@xiii4a-gk%paucu=s6==0#o3e%ur^t+38%y4h%4hgl4jx&k-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -136,4 +136,5 @@ MEDIA_URL= '/media/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 import dj_database_url
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600,ssl_require=True)
+
 
