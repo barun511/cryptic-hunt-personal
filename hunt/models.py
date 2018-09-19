@@ -28,7 +28,7 @@ class Level(models.Model):
     answer2 = models.CharField(max_length=20)
     answer3 = models.CharField(max_length=20)
     def __str__(self):
-        return self.level_title
+        return self.level_title + " (" + str(self.level_number) + ")"
     #image = models.ImageField(upload_to="level/") # TODO get this done when you get back home
 class Submission(models.Model):
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
