@@ -3,13 +3,14 @@ body
 {
 	margin:0px;
 	padding:0px;
-	color:#000033;
+	color:black;
+    background-color: #e9f6ff;
 	font-family: Raleway, sans-serif; /* till you get Raleway */
-	background-color: rgb(250, 250, 225);
 }
 .navbar
 {
-	background-color: #872121;
+	background-color: #09ce9b;
+    border-bottom: 1.5px solid #6b7d30;
 	padding:8px;
 	align-items: center;
 	margin-top: 0px;
@@ -18,10 +19,10 @@ body
 .navbar a
 {
 	padding-right: 10px;
-	margintures: auto;
+	margin: auto;
 	text-align: center;
 	text-decoration: none;
-	color:white;
+	color:black;
 }
 .navbar right-align
 {
