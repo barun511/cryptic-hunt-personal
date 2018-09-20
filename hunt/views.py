@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from .forms import UserForm, SubmissionForm
+from .forms import UserForm, SubmissionForm, UserDetailForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import Level, Submission, Profile
 # TODO clean up all redundant things.   
@@ -14,6 +15,25 @@ def index(request):
 def rules(request):
     return render(request, 'rules.html', {})
 
+def userdetails(request):
+    if request.user.is_authenticated:
+        form = UserDetailForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                first_name = form.cleaned_data.get('first_name')
+                last_name = form.cleaned_data.get('last_name')
+                email = form.cleaned_data.get('email')
+                request.user.email = email
+                request.user.first_name = first_name
+                request.user.last_name = last_name
+                request.user.save()
+                messages.success(request, "Your details were saved successfully!")
+        else:
+            form = UserDetailForm()
+        return render(request, 'userdetail.html',  {'form': form})
+    else:
+        return redirect('index')
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -21,7 +41,7 @@ def signup(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(username=username, password=raw_password) # TODO add email to this by adding it to model form and then creating user with user.objects.create_user
             return redirect('login')
     else:
         form = UserCreationForm()
@@ -90,7 +110,7 @@ def level(request, level_number):
                         request.user.save()
                     submission.save()
                     return redirect('level', current_level.level_number + 1)
-                    # requests.user.profle.level+=1 <-- This is INCORRECT, Preetha/Paul. Can you figure out what the potential issue is?
+                    # requests.user.profle.level+=1 <-- This is faulty :P
                 else:
                     print("XD")
                     submission.accepted = False
