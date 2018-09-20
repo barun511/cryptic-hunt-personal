@@ -38,3 +38,6 @@ class Submission(models.Model):
     accepted = models.BooleanField()
     def __str__(self):
         return str(self.user.username) + " answered : " + str(self.submitted_answer) + " for Level : " + str(self.level.level_number) + "(" + str(self.time_of_submission) + ")"
+
+class AppVariable(models.Model):
+    success_sign_up = models.CharField(max_length=200)

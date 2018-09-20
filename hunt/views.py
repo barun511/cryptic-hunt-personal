@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from .forms import UserForm, SubmissionForm, UserDetailForm
 from django.contrib.auth.forms import UserCreationForm
-from .models import Level, Submission, Profile
+from .models import Level, Submission, Profile, AppVariable
 # TODO clean up all redundant things.   
 # Create your views here.
 
@@ -27,7 +27,11 @@ def userdetails(request):
                 request.user.first_name = first_name
                 request.user.last_name = last_name
                 request.user.save()
-                messages.success(request, "Your details were saved successfully!")
+                success_message_header = AppVariable.objects.all().first()
+                if success_message_header == None:
+                    messages.success(request, "Your details were saved successfully!")
+                else:
+                    messages.success(request, "Your details were saved successfully! An error has occurred : " + success_message_header.success_sign_up)
         else:
             form = UserDetailForm()
         return render(request, 'userdetail.html',  {'form': form})
