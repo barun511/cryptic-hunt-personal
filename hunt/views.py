@@ -31,7 +31,7 @@ def userdetails(request):
                 if success_message_header == None:
                     messages.success(request, "Your details were saved successfully!")
                 else:
-                    messages.success(request, "Your details were saved successfully! An error has occurred : " + success_message_header.success_sign_up)
+                    messages.success(request, "Your details were saved successfully! Have you tried..." + success_message_header.success_sign_up + "? ;)")
         else:
             form = UserDetailForm()
         return render(request, 'userdetail.html',  {'form': form})
