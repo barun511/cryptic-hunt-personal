@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate
 from .forms import UserForm, SubmissionForm, UserDetailForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import Level, Submission, Profile, AppVariable
+
+import datetime
 # TODO clean up all redundant things.   
 # Create your views here.
 
@@ -65,8 +67,6 @@ def play(request):
         return redirect('index')
 
 def level(request, level_number):
-    print(level_number)
-    print(len(Level.objects.all()))
     if int(level_number) >= len(Level.objects.all()):
         return render(request, 'finished.html', {})
     if request.user.is_authenticated and request.user.profile.level >= int(level_number): # if the user level isn't high enough to access this level
@@ -111,15 +111,15 @@ def level(request, level_number):
                     '''
                     if (request.user.profile.level == current_level.level_number):
                         request.user.profile.level = current_level.level_number + 1
+                        request.user.profile.time_of_level = datetime.datetime.now()
                         request.user.save()
                     submission.save()
                     return redirect('level', current_level.level_number + 1)
                     # requests.user.profle.level+=1 <-- This is faulty :P
                 else:
-                    print("XD")
                     submission.accepted = False
                     submission.save()
-                    return redirect('level', request.user.profile.level)
+                    return redirect('level', current_level.level_number)
                     # display "Wrong Answer, try again", or something of the sort to give feedback.
                 
     else:
