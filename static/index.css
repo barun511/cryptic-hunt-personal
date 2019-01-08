@@ -4,12 +4,12 @@ body
 	margin:0px;
 	padding:0px;
 	color:black;
-    background-color: #e9f6ff;
+    background-color: #6cabdd;
 	font-family: Raleway, sans-serif; /* till you get Raleway */
 }
 .navbar
 {
-	background-color: #09ce9b;
+	background-color: #ffc659;
     border-bottom: 1.5px solid #6b7d30;
 	padding:8px;
 	align-items: center;

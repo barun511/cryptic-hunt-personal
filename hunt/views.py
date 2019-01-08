@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from .forms import UserForm, SubmissionForm, UserDetailForm
+from .forms import UserForm, SubmissionForm, UserDetailForm, CustomUserCreationForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import Level, Submission, Profile, AppVariable
 
@@ -17,7 +17,7 @@ def index(request):
 def rules(request):
     return render(request, 'rules.html', {})
 
-def userdetails(request):
+def userdetails(request): # The UserDetails is used to grab email ids. It was a hack used to fix me forgetting to get emails in the signup sheet. 
     if request.user.is_authenticated:
         form = UserDetailForm(request.POST)
         if request.method == 'POST':
@@ -42,15 +42,17 @@ def userdetails(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            print(email)
             raw_password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password) # TODO add email to this by adding it to model form and then creating user with user.objects.create_user
             return redirect('login')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
 def base(request):
@@ -102,7 +104,8 @@ def level(request, level_number):
                     # (which is defined as the maximum possible level the user can access)
                     # is equal to the current level or not. If it is, we can update it to the next level, otherwise
                     # the user is solving an earlier level and we don't need to update anything. 
-
+                    # Moderately old barun - not completely true. We can redirect to the +1 level under any circumstance, we just only save if 
+                    # the solved level happened to also be the level the user was at. 
                     '''
                     accepted_submissions_for_this_level = Submission.objects.filter(user__exact=request.user,level=current_level,accepted=True)
                     if (len(accepted_submissions_for_this_level) == 1):
@@ -121,8 +124,6 @@ def level(request, level_number):
                     submission.save()
                     return redirect('level', current_level.level_number)
                     # display "Wrong Answer, try again", or something of the sort to give feedback.
-                
     else:
-        print("XASD")
         return redirect('play')
 
