@@ -5,11 +5,12 @@ body
 	padding:0px;
 	color:#000033;
 	font-family: Raleway, sans-serif; /* till you get Raleway */
-	background-color: rgb(250, 250, 225);
+	background-color: #6cabdd;
 }
 .navbar
 {
-	background-color: #872121;
+	background-color: #ffc659;
+	border-bottom: 1.5px solid #6b7d30;
 	padding:8px;
 	align-items: center;
 	margin-top: 0px;
@@ -18,7 +19,7 @@ body
 .navbar a
 {
 	padding-right: 10px;
-	margintures: auto;
+	margin: auto;
 	text-align: center;
 	text-decoration: none;
 	color:white;
