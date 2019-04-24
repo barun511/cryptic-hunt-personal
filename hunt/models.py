@@ -9,7 +9,7 @@ class Profile(models.Model):
         level = models.IntegerField(default=0)
         time_of_level = models.DateTimeField(default=now)
         def __str__(self):
-            return self.user.username
+            return self.user.username + " (" + str(self.level) + ")"
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

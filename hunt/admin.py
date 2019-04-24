@@ -14,6 +14,7 @@ class UserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(Level)
+admin.site.register(Profile)
 admin.site.register(User, UserAdmin)
 admin.site.register(Submission)
 admin.site.register(AppVariable)
