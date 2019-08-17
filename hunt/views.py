@@ -9,7 +9,10 @@ from .models import Level, Submission, Profile, CustomVariable
 
 def index(request):
     form = UserForm()# redundant
-    initial_display = CustomVariable.objects.all()[0].initial_display
+    try:
+        initial_display = CustomVariable.objects.all()[0].initial_display
+    except: # default error message
+        initial_display = "Please set up a CustomVariable object from the Admin panel. (but only 1! Behaviour is undefined otherwise)"
     return render(request, 'index.html', {'form': form, 'initial_display' : initial_display})
 
 def signup(request):
@@ -42,7 +45,10 @@ def level(request, level_number):
     print(level_number)
     print(len(Level.objects.all()))
     if int(level_number) >= len(Level.objects.all()):
-        final_display = CustomVariable.objects.all()[0].final_display
+        try:
+            final_display = CustomVariable.objects.all()[0].final_display
+        except:
+            final_display = "Please set up a CustomVariable object from the Admin panel. (but only 1! behaviour is undefined otherwise)"
         return render(request, 'finished.html', {'final_display' : final_display})
     if request.user.is_authenticated() and request.user.profile.level >= int(level_number): # if the user level isn't high enough to access this level
         current_level = get_object_or_404(Level, level_number=level_number) # then they will simply be redirected to play which redirects them to the latest unsolved level
