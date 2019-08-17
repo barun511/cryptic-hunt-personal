@@ -38,3 +38,7 @@ class Submission(models.Model):
     accepted = models.BooleanField()
     def __str__(self):
         return str(self.user.username) + " submitted the answer " + str(self.submitted_answer) + " for Level " + str(self.level.level_number) + " at time " + str(self.time_of_submission)
+
+class CustomVariable(models.Model):
+    initial_display = models.TextField()
+    final_display = models.TextField()

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Profile, Level, Submission
+from .models import Profile, Level, Submission, CustomVariable
 
 
 class ProfileInline(admin.StackedInline):
@@ -16,3 +16,4 @@ admin.site.unregister(User)
 admin.site.register(Level)
 admin.site.register(User, UserAdmin)
 admin.site.register(Submission)
+admin.site.register(CustomVariable)
