@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
         url(r'^$', views.index, name="index"),
-        url(r'^logout/?$', auth_views.logout, {'next_page':'login'}, name="logout"),
-        url(r'^login/?$', auth_views.login, name="login"),
+        url(r'^logout/?$', auth_views.LogoutView.as_view, {'next_page':'login'}, name="logout"),
+        url(r'^login/?$', auth_views.LoginView.as_view, name="login"),
         url(r'^signup/?$', views.signup, name="signup"),
         url(r'^base/?$', views.base, name="base"),
         url(r'^leaderboard/?$', views.leaderboard, name="leaderboard"),
