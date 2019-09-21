@@ -1,7 +1,7 @@
 {% load static %}
 <html>
 	<head>
-		<title= {% block 'title' %}{% endblock %}>
+		<title=" {% block 'title' %}{% endblock %}">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
 	</head>
@@ -10,6 +10,7 @@
             {% if user.is_authenticated %}
             <a href="{% url 'play' %}"> Play </a>
             <a class="right-align" href="{% url 'logout' %}"> Logout </a>
+            <a class="right-align" href="{% url 'userdetails' %}">Further Registration Details</a>
             {% else %}
 			<a href="{% url 'signup' %}">Signup</a>
 			<a href="{% url 'login' %}">Login</a>

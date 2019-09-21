@@ -12,4 +12,5 @@ urlpatterns = [
         url(r'^play/?$', views.play, name="play"),
         url(r'^level/(?P<level_number>\d+)/?$', views.level, name="level"),
         url(r'^rules/?$',views.rules, name="rules"),
+        url(r'^userdetails/?$',views.userdetails, name="userdetails"),
 ]

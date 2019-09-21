@@ -1,2 +1,3 @@
-/hunt/migrations/
 /hunt/__pycache__/
+/hunt/migrations/__pycache__/
+/staticfile/
