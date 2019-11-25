@@ -41,7 +41,19 @@ def userdetails(request): # The UserDetails is used to grab email ids. It was a 
         return redirect('index')
 
 def signup(request):
-    return redirect('index')
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            print(email)
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password) # TODO add email to this by adding it to model form and then creating user with user.objects.create_user
+            return redirect('login')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 def base(request):
     return render(request, 'base.html', {})
