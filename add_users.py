@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 
 def get_input():
-    s = input()
     users = []
-    while s != "":
-        line_array = s.split(',')
-        users.append((line_array[0], line_array[1]))
+    with open("users.csv", "r") as infile:
+        for s in infile:
+            line_array = s.split(',')
+            users.append((line_array[0], line_array[1]))
+    return users
 
 def write_to_db(users):
     for user in users:
