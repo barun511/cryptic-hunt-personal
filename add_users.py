@@ -10,7 +10,7 @@ def get_input():
 
 def write_to_db(users):
     for user in users:
-        user_object = User.objects.create_user(user[0], user[1])
+        user_object = User.objects.create_user(user[0], password=user[1])
         user_object.is_superuser = False
         user_object.is_staff = False
         user_object.save()
