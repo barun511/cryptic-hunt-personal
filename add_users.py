@@ -1,4 +1,4 @@
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 
 def get_input():
     s = input()
