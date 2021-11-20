@@ -12,6 +12,7 @@
             <a class="right-align" href="{% url 'logout' %}"> Logout </a>
             {% else %}
 			<a href="{% url 'login' %}">Login</a>
+			<a href="{% url 'signup' %}">Signup</a>
             {% endif %}
             <a href="{% url 'leaderboard' %}">Leaderboard</a>
             <a href="{% url 'rules' %}">Rules</a>
